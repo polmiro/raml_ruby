@@ -35,7 +35,9 @@ module Raml
           
           if val.is_a? Raml::Parser::Include
             child_wd = expand_includes_working_dir cwd, val.path
+            path = val.path
             val      = val.content cwd
+            val.define_singleton_method(:file_path) { child_wd + "/" + path.split("/").last }
           end
           
           expand_includes val, child_wd

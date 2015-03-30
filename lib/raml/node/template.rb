@@ -16,7 +16,7 @@ module Raml
 
     def clone_data
       # ugly but effective
-      Marshal.load Marshal.dump @value
+      Marshal.load Marshal.dump @value.dup
     end
 
     def interpolate_params(value, params)
